@@ -22,7 +22,7 @@ console.log("Save these:", result.commitment, result.secret, result.nullifier);
 
 // Withdraw (via relayer)
 await client.withdrawViaRelayer(
-  "https://relayer.xorax.io",
+  "https://relayer.xorax.cash",
   commitment,
   secret,
   nullifier,
@@ -32,7 +32,7 @@ await client.withdrawViaRelayer(
 
 ## Documentation
 
-Full documentation available at [xorax.io/docs](https://xorax.io/docs)
+Full documentation available at [xorax.cash/docs](https://xorax.cash/docs)
 
 ## Features
 

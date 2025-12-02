@@ -1,6 +1,6 @@
 # Xorax SDK
 
-TypeScript SDK for integrating [Xorax](https://xorax.io) privacy mixer into your Solana applications.
+TypeScript SDK for integrating [Xorax](https://xorax.cash) privacy mixer into your Solana applications.
 
 ## Features
 
@@ -58,7 +58,7 @@ console.log("Nullifier:", result.nullifier);
 const recipient = new PublicKey("YOUR_RECIPIENT_ADDRESS");
 
 const result = await client.withdrawViaRelayer(
-  "https://relayer.xorax.io", // Relayer URL
+  "https://relayer.xorax.cash", // Relayer URL
   commitment,
   secret,
   nullifier,
@@ -251,7 +251,7 @@ function MixerComponent() {
 
     try {
       const result = await client.withdrawViaRelayer(
-        "https://relayer.xorax.io",
+        "https://relayer.xorax.cash",
         credentials.commitment,
         credentials.secret,
         credentials.nullifier,
@@ -337,8 +337,8 @@ MIT
 
 ## Links
 
-- [Website](https://xorax.io)
-- [Documentation](https://xorax.io/docs)
+- [Website](https://xorax.cash)
+- [Documentation](https://xorax.cash/docs)
 - [GitHub](https://github.com/xorax)
 - [Discord](https://discord.gg/xorax)
 
@@ -348,4 +348,4 @@ For issues and questions:
 
 - GitHub Issues: https://github.com/xorax/xorax-sdk/issues
 - Discord: https://discord.gg/xorax
-- Email: support@xorax.io
+- Email: support@xorax.cash
