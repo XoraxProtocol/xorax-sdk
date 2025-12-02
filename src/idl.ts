@@ -1,4 +1,6 @@
-export const XORAX_IDL = {
+import { Idl } from "@coral-xyz/anchor";
+
+export const XORAX_IDL: Idl = {
   address: "XoPB2WDHGJrnhR78xG9EfuU8PGYHchcPvygycaHuHGz",
   metadata: {
     name: "xorax",

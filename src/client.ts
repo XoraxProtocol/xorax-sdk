@@ -49,7 +49,7 @@ export class XoraxClient {
       AnchorProvider.defaultOptions()
     );
 
-    this.program = new Program(XORAX_IDL as any, provider);
+    this.program = new Program(XORAX_IDL, provider) as Program<XoraxProgram>;
   }
 
   /**
@@ -121,10 +121,10 @@ export class XoraxClient {
     const tx = await this.program.methods
       .deposit(commitment, amountLamports, new BN(delaySeconds))
       .accounts({
-        depositRecord: depositRecordPda,
+        deposit_record: depositRecordPda,
         depositor: depositor,
-        systemProgram: SystemProgram.programId,
-      })
+        system_program: SystemProgram.programId,
+      } as any)
       .rpc();
 
     return {
@@ -208,12 +208,12 @@ export class XoraxClient {
     const tx = await this.program.methods
       .withdraw(toArray(secretBytes), toArray(nullifierBytes))
       .accounts({
-        depositRecord: depositRecordPda,
-        nullifierRecord: nullifierRecordPda,
+        deposit_record: depositRecordPda,
+        nullifier_record: nullifierRecordPda,
         recipient: recipient,
         relayer: relayer,
-        systemProgram: SystemProgram.programId,
-      })
+        system_program: SystemProgram.programId,
+      } as any)
       .rpc();
 
     return { signature: tx };
