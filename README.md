@@ -2,6 +2,8 @@
 
 TypeScript SDK for integrating [Xorax](https://xorax.cash) privacy mixer into your Solana applications.
 
+> **🎉 Now on Mainnet!** Version 1.1.0 supports Solana mainnet deployment.
+
 ## Features
 
 - ✅ **Easy Integration** - Simple API for deposits and withdrawals
@@ -9,6 +11,7 @@ TypeScript SDK for integrating [Xorax](https://xorax.cash) privacy mixer into yo
 - ⚡ **Solana Speed** - Fast confirmations and low transaction costs
 - 🌐 **Relayer Support** - Gasless withdrawals via relayer network
 - 📦 **TypeScript** - Full type safety and IntelliSense support
+- 🚀 **Mainnet Ready** - Production deployment on Solana mainnet
 
 ## Installation
 
@@ -27,8 +30,10 @@ pnpm add @xorax/sdk
 ```typescript
 import { createClient, Connection, PublicKey } from "@xorax/sdk";
 
-// Connect to Solana
-const connection = new Connection("https://api.devnet.solana.com");
+// Connect to Solana Mainnet
+const connection = new Connection("https://api.mainnet-beta.solana.com");
+// Or use devnet for testing
+// const connection = new Connection("https://api.devnet.solana.com");
 
 // Create client with your wallet
 const client = createClient(connection, wallet);

@@ -1,12 +1,12 @@
 import { Idl } from "@coral-xyz/anchor";
 
 export const XORAX_IDL: Idl = {
-  address: "XoPB2WDHGJrnhR78xG9EfuU8PGYHchcPvygycaHuHGz",
+  address: "JJWGp5cinhhupX8LNm6oThsuzdt3esnJZZLYTosqMEm",
   metadata: {
     name: "xorax",
     version: "0.1.0",
     spec: "0.1.0",
-    description: "Xorax Privacy Mixer on Solana",
+    description: "Created with Anchor",
   },
   instructions: [
     {

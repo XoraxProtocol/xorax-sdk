@@ -1,0 +1,246 @@
+{
+  "address": "JJWGp5cinhhupX8LNm6oThsuzdt3esnJZZLYTosqMEm",
+  "metadata": {
+    "name": "xorax",
+    "version": "0.1.0",
+    "spec": "0.1.0",
+    "description": "Created with Anchor"
+  },
+  "instructions": [
+    {
+      "name": "deposit",
+      "docs": [
+        "Deposit any amount into the mixer with a commitment"
+      ],
+      "discriminator": [
+        242,
+        35,
+        198,
+        137,
+        82,
+        225,
+        242,
+        182
+      ],
+      "accounts": [
+        {
+          "name": "deposit_record",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  100,
+                  101,
+                  112,
+                  111,
+                  115,
+                  105,
+                  116
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "commitment"
+              }
+            ]
+          }
+        },
+        {
+          "name": "depositor",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "commitment",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        },
+        {
+          "name": "amount",
+          "type": "u64"
+        },
+        {
+          "name": "delay_seconds",
+          "type": "i64"
+        }
+      ]
+    },
+    {
+      "name": "withdraw",
+      "docs": [
+        "Withdraw funds using the secret that matches the commitment"
+      ],
+      "discriminator": [
+        183,
+        18,
+        70,
+        156,
+        148,
+        109,
+        161,
+        34
+      ],
+      "accounts": [
+        {
+          "name": "deposit_record",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  100,
+                  101,
+                  112,
+                  111,
+                  115,
+                  105,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "deposit_record.commitment",
+                "account": "DepositRecord"
+              }
+            ]
+          }
+        },
+        {
+          "name": "recipient",
+          "writable": true
+        },
+        {
+          "name": "authority",
+          "writable": true
+        },
+        {
+          "name": "fee_payer",
+          "docs": [
+            "Fee payer (relayer) who signs the transaction and gets gas reimbursed"
+          ],
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "secret",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        },
+        {
+          "name": "nullifier",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "accounts": [
+    {
+      "name": "DepositRecord",
+      "discriminator": [
+        83,
+        232,
+        10,
+        31,
+        251,
+        49,
+        189,
+        167
+      ]
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "name": "InvalidSecret",
+      "msg": "Invalid secret provided"
+    },
+    {
+      "code": 6001,
+      "name": "AlreadyWithdrawn",
+      "msg": "This deposit has already been withdrawn"
+    },
+    {
+      "code": 6002,
+      "name": "WithdrawalTooEarly",
+      "msg": "Withdrawal too early, please wait longer"
+    },
+    {
+      "code": 6003,
+      "name": "InvalidDelay",
+      "msg": "Invalid delay - must be between 5 minutes and 24 hours"
+    },
+    {
+      "code": 6004,
+      "name": "InvalidFeePayer",
+      "msg": "Invalid fee payer - must be the authorized relayer"
+    },
+    {
+      "code": 6005,
+      "name": "DepositTooSmall",
+      "msg": "Deposit amount too small - minimum 0.01 SOL"
+    }
+  ],
+  "types": [
+    {
+      "name": "DepositRecord",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "commitment",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "amount",
+            "type": "u64"
+          },
+          {
+            "name": "timestamp",
+            "type": "i64"
+          },
+          {
+            "name": "withdrawal_delay",
+            "type": "i64"
+          },
+          {
+            "name": "withdrawn",
+            "type": "bool"
+          }
+        ]
+      }
+    }
+  ]
+}
